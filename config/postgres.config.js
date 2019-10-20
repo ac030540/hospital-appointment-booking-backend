@@ -1,6 +1,16 @@
 let DBToConnet = "";
+const dotenv = require('dotenv');
+dotenv.config();
 
 if(process.env.NODE_ENV==="production") {
+  DBToConnet = require('knex')({
+    client: 'pg',
+    connection: {
+      connectionString : process.env.DATABASE_URL,
+      ssl : true
+    }
+  });
+} else if(process.env.NODE_ENV==="test") {
   DBToConnet = require('knex')({
     client: 'pg',
     connection: {
