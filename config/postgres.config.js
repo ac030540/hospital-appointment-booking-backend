@@ -1,6 +1,6 @@
 let DBToConnet = "";
 
-if(process.env.NODE_ENV==="prod") {
+if(process.env.NODE_ENV==="production") {
   DBToConnet = require('knex')({
     client: 'pg',
     connection: {

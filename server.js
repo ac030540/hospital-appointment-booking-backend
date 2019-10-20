@@ -4,7 +4,10 @@ const cors = require('cors');
 const DB = require('./config/postgres.config');
 
 const app = express();
-console.log(DB.select().table('books'));
+DB.select().table('books')
+.then((data) => console.log(data))
+.catch((err) => console.log(err))
+
 app.use(bodyParser.json());
 app.use(cors());
 
