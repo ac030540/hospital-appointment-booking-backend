@@ -19,7 +19,7 @@ const appointmentHandler = (req, res,DB) => {
         )
     .then( user_data => {
         if(user_data){
-            let message = nodemailer.composeMail(`Your Appointment has been booked successfully at the hospital ${hospital_name} with doctor ${doctor_name}
+            let message = nodemailer.composeMail(`Your appointment has been booked successfully at the hospital ${hospital_name} with doctor ${doctor_name},
             on ${date} at ${time}.`,name);
             nodemailer.sendEmail("Appointment Confirmation", email, message)
             .then(() => {

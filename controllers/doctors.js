@@ -11,8 +11,8 @@ const doctorDetailsByIdHandler = (req, res,DB) => {
 		  {
 		  	query2.then(hospital => {
 					if(hospital)
-						res.json({doctor: doctor, 
-						hospital: hospital})
+						res.json({doctor: doctor[0], 
+						hospital: hospital[0]})
 					else
 						res.status(400).json("Profile not found")
 			  })
