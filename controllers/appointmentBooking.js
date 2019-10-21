@@ -1,17 +1,25 @@
-// const appointmentHandler = (req, res,DB) => {
-//   hospitalId: req.params.hospitalId;
-//   doctorId: req.params.doctorId;
-// 	// const {id} = req.params;
-// 	// DB.select('*').from('users').where({id:id})
-//   //   .then( user => {
-// 	//   	if(user.length)
-// 	//   		res.json(user[0])
-// 	//   	else 
-// 	//   		res.status(400).json("Profile not found")
-// 	// })
-//   //   .catch( err => res.status(400).json("Unable to load profile"))
-// }
+const appointmentHandler = (req, res,DB) => {
+    const { doctorId, hospitalId } = req.params;
+	const {name, age, address, date, number} = req.body;
+	DB('appointment').insert(
+       { // {aid: DEFAULT,
+        patient_name: name,
+        patient_address: address,
+        patient_age: age,
+        patient_number: number,
+        a_date: date,
+        a_hid: hospitalId, 
+        a_did: doctorId}
+        )
+    .then( user_data => {
+        if(user_data) 
+            res.json("success")
+        else 
+            res.status(400).json("Profile not found")
+    })
+   .catch( err => res.status(400).json(err))
+}
 
-// module.exports = {
-// 	appointmentHandler : appointmentHandler
-// }
+module.exports = {
+	appointmentHandler : appointmentHandler
+}
