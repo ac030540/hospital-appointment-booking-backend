@@ -1,11 +1,24 @@
 const doctorDetailsByIdHandler = (req, res,DB) => {
     const {hospitalId, doctorId} = req.params;
-    var subquery = DB.select('did').from('hosp_docs').where({hid:hospitalId, did:doctorId});
-	DB.select('*').from('doctors').whereIn('did', subquery).then( doctor => {
-	  	if(doctor)
-	  		res.json(doctor)
+	var subquery1 = DB.select('did').from('hosp_docs').where({hid:hospitalId, did:doctorId});
+	var subquery2 = DB.select('hid').from('hosp_docs').where({hid:hospitalId, did:doctorId});
+	var query1 = DB.select('*').from('doctors').whereIn('did', subquery1);
+	var query2 = DB.select('name').from('hospitals').whereIn('hid', subquery2);
+	// let obj = {doctor: query1,
+	// 		hospital: query2};
+	query1.then( doctor => {
+		  if(doctor)
+		  {
+		  	query2.then(hospital => {
+					if(hospital)
+						res.json({doctor: doctor, 
+						hospital: hospital})
+					else
+						res.status(400).json("Profile not found")
+			  })
+		  }
 	  	else 
-	  		res.status(400).json("Profile not found")
+			  res.status(400).json("Profile not found")
 	})
     .catch( err => res.status(400).json(err))
 }
