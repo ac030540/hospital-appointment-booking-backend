@@ -17,13 +17,13 @@ app.get('/', (req, res) => {
 })
 
 const hospitals = require('./controllers/hospitals');
-// const doctors = require('./controllers/doctors');
+const doctors = require('./controllers/doctors');
 // const appointmentBooking = require('./controllers/appointmentBooking');
 
 app.get( '/hospitals', (req, res) => { hospitals.allHospitalDetailsHandler(req, res, DB)});
 app.get( '/hospitalPage/:hospitalId', (req, res) => { hospitals.hospitalDetailsByIdHandler(req, res, DB)});
-// app.get( '/doctors/:hospitalId', (req, res) => { doctors.allDoctorDetailsHandler(req, res, DB)});
-// app.get( '/doctors/:hospitalId/:doctorId', (req, res) => { doctors.doctorDetailsByIdHandler(req, res, DB)});
+app.get( '/doctors/:hospitalId', (req, res) => { doctors.allDoctorDetailsHandler(req, res, DB)});
+app.get( '/doctors/:hospitalId/:doctorId', (req, res) => { doctors.doctorDetailsByIdHandler(req, res, DB)});
 // app.post( '/booking-appointment/:hospitalId/:doctorId', (req, res) => { appointmentBooking.appointmentHandler(req, res, DB)});
 
 const PORT = process.env.PORT || 4000;
