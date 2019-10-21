@@ -24,8 +24,8 @@ if(process.env.NODE_ENV==="production") {
     version: '7.2',
     connection: {
       host : '127.0.0.1',
-      user : '',
-      password : '',
+      user : 'postgres',
+      password : '12345',
       database : 'hospital-appointment-booking'
     }
   });

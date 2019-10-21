@@ -1,9 +1,9 @@
 const allHospitalDetailsHandler = (req, res,DB) => {
 	const {id} = req.params;
-	DB.select('*').from('users').where({id:id})
-    .then( user => {
-	  	if(user.length)
-	  		res.json(user[0])
+	DB.select('*').from('HOSPITALS')
+    .then( hospitals => {
+	  	if(hospitals)
+	  		res.json(hospitals)
 	  	else 
 	  		res.status(400).json("Profile not found")
 	})
