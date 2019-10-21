@@ -1,6 +1,6 @@
 import nodemailer from 'nodemailer';
 
-export const sendEmail = (subject: any, email: any, message: any) => {
+export const sendEmail = (subject, email, message) => {
     return new Promise((resolve, reject) => {
         const transporter = nodemailer.createTransport({
             service: 'gmail',
@@ -25,9 +25,9 @@ export const sendEmail = (subject: any, email: any, message: any) => {
     });
 };
 
-export const composeMail = (message: string,name: string) => {
+export const composeMail = (message,name) => {
     message = message.replace(/(?:\r\n|\r|\n)/g, '<br>');
     message = 'Hey '+name+'<br><br>' + message;
-    message += '<br><br>Regards,<br>SIESGSTarena Platform Team';
+    message += '<br><br>Regards,<br>Ashook Choudhary';
     return message;
 };
