@@ -13,7 +13,7 @@ app.use(bodyParser.json());
 app.use(cors());
 
 app.get('/', (req, res) => {
-	res.json("Hello");
+	res.json("Server Running");
 })
 
 const hospitals = require('./controllers/hospitals');
