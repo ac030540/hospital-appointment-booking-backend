@@ -13,7 +13,7 @@ const doctorDetailsByIdHandler = (req, res,DB) => {
 					if(hospital)
 					{
 						DB.select('timings').from('hosp_docs').where({hid:hospitalId, did:doctorId}).then( timings => {
-							doctor.timings = timings;
+							doctor[0].timings = timings;
 							res.json({doctor: doctor[0], 
 								hospital: hospital[0]})
 						})
