@@ -35,6 +35,10 @@ const allDoctorDetailsHandler = (req, res,DB) => {
 	DB.select('*').from('doctors').whereIn('did', subquery).then( doctors => {
 		  if(doctors){
 			DB.select('timings').from('hosp_docs').where({hid:hospitalId}).then(timings => {
+				console.log(timings)
+				let index=0;
+				timingsMapped = doctors.map(doctor => {doctor.timings = timings[index].timings; index++;});
+				console.log(timingsMapped);
 				doctors.timings = timings
 				res.json(doctors)
 			})
