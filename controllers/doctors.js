@@ -13,7 +13,7 @@ const doctorDetailsByIdHandler = (req, res,DB) => {
 					if(hospital)
 					{
 						DB.select('timings').from('hosp_docs').where({hid:hospitalId, did:doctorId}).then( timings => {
-							doctor[0].timings = timings;
+							doctor[0].timings = timings[0].timings;
 							res.json({doctor: doctor[0], 
 								hospital: hospital[0]})
 						})
@@ -36,11 +36,10 @@ const allDoctorDetailsHandler = (req, res,DB) => {
 		  if(doctors){
 			DB.select('timings').from('hosp_docs').where({hid:hospitalId}).then(timings => {
 				console.log(timings)
-				let index=0;
-				timingsMapped = doctors.map(doctor => {doctor.timings = timings[index].timings; index++;});
+				let index=-1;
+				timingsMapped = doctors.map(doctor => { index++;doctor.timings = timings[index].timings; return (doctor)});
 				console.log(timingsMapped);
-				doctors.timings = timings
-				res.json(doctors)
+				res.json(timingsMapped)
 			})
 		  }
 	  		
