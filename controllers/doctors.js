@@ -11,13 +11,18 @@ const doctorDetailsByIdHandler = (req, res,DB) => {
 		  {
 		  	query2.then(hospital => {
 					if(hospital)
-						res.json({doctor: doctor[0], 
-						hospital: hospital[0]})
+					{
+						DB.select('timings').from('hosp_docs').where({hid:hospitalId, did:doctorId}).then( timings => {
+							doctor.timings = timings;
+							res.json({doctor: doctor[0], 
+								hospital: hospital[0]})
+						})
+					}
 					else
 						res.status(400).json("Profile not found")
 			  })
 		  }
-	  	else 
+	  	   else
 			  res.status(400).json("Profile not found")
 	})
     .catch( err => res.status(400).json(err))
