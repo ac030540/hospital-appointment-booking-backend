@@ -33,8 +33,13 @@ const allDoctorDetailsHandler = (req, res,DB) => {
     // console.log(req.params);
     var subquery = DB.select('did').from('hosp_docs').where({hid:hospitalId});
 	DB.select('*').from('doctors').whereIn('did', subquery).then( doctors => {
-	  	if(doctors)
-	  		res.json(doctors)
+		  if(doctors){
+			DB.select('timings').from('hosp_docs').where({hid:hospitalId}).then(timings => {
+				doctors.timings = timings
+				res.json(doctors)
+			})
+		  }
+	  		
 	  	else 
 	  		res.status(400).json("Profile not found")
 	})
