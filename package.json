@@ -5,15 +5,15 @@
   "main": "index.js",
   "scripts": {
     "test": "run-script-os",
-    "test:win32:msys": "set NODE_ENV=test nodemon server.js",
+    "test:win32:msys": "set NODE_ENV=test && nodemon server.js",
     "test:darwin:linux": "NODE_ENV=test nodemon server.js",
     "test:default": "NODE_ENV=test nodemon server.js",
     "start": "run-script-os",
-    "start:win32:msys": "set NODE_ENV=production node server.js",
+    "start:win32:msys": "set NODE_ENV=production && node server.js",
     "start:darwin:linux": "NODE_ENV=production node server.js",
     "start:default": "NODE_ENV=production node server.js",
     "dev": "run-script-os",
-    "dev:win32:msys": "set NODE_ENV=dev nodemon server.js",
+    "dev:win32:msys": "set NODE_ENV=dev && nodemon server.js",
     "dev:darwin:linux": "NODE_ENV=dev nodemon server.js",
     "dev:default": "NODE_ENV=dev nodemon server.js"
   },
