@@ -30,5 +30,5 @@ const PORT = process.env.PORT || 4000;
 app.listen(PORT, () => {
   console.log("The server is listening on port", PORT);
   console.log("The environment is", process.env.NODE_ENV);
-  // console.log(process.env.DATABASE_URL);
+  console.log(process.env.DATABASE_URL);
 });
