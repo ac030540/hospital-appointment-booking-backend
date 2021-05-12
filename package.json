@@ -26,7 +26,7 @@
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "knex": "^0.19.5",
-    "nodemailer": "^6.3.1",
+    "nodemailer": "^6.4.16",
     "nodemon": "^1.19.4",
     "pg": "^7.12.1",
     "run-script-os": "^1.1.1"
